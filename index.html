@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Anna's Minecraft Server</title>
+
+  <style>
+    body {
+      margin: 0;
+      background-color: #ffe6f0;
+      font-family: Menlo, Consolas, "Courier New", monospace;
+      color: #1f7a3a;
+      cursor: url('images/petalsCursor.png') 16 16, auto;
+    } 
+
+    header {
+      padding: 20px;
+      border-bottom: 4px solid #ff8fcf;
+      background-color: #b6f2c2;
+    }
+
+    header h1 {
+      margin: 0 0 15px 0; 
+      color: #ff4fa3;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .cute-float {
+      color: #ff4fa3;
+      font-size: 20px;
+      display: inline-block;
+      animation: floaty 2.5s ease-in-out infinite;
+    }
+
+    @keyframes floaty {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-4px); }
+      100% { transform: translateY(0); }
+    }
+
+   
+    .tabs {
+      display: flex;
+      gap: 10px;
+      position: relative;
+    }
+
+    .tabs a, .tabs .dropdown-btn {
+      text-decoration: none;
+      color: #1f7a3a;
+      padding: 8px 12px;
+      border: 2px solid #1f7a3a;
+      background-color: #fff0f6;
+      font-size: 12px;
+      cursor: pointer;
+      position: relative;
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .tabs a:hover, .tabs .dropdown:hover {
+      background-color: #ff8fcf;
+      color: #fff0f6;
+    }
+
+    .tabs .dropdown-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: #fff0f6;
+      border: 2px solid #1f7a3a;
+      border-radius: 5px;
+      padding: 10px;
+      font-size: 11px;
+      width: 300px;
+      z-index: 20;
+    }
+
+.tabs .dropdown-menu {
+  color: #1f7a3a;     
+  background-color: #fff0f6;
+  z-index: 9999;
+}
+
+    .tabs .dropdown-menu p {
+      margin: 0;
+      padding: 5px 0;
+    }
+
+    .tabs .dropdown:hover .dropdown-menu {
+      display: block;
+    }
+
+    .layout {
+display: grid;
+grid-template-columns: 200px max-content 1fr;
+gap: 20px;
+padding: 20px;
+align-items: start;
+max-height: 400px;
+    }
+
+
+    aside {
+  border-right: 3px solid #1f7a3a;
+      padding-right: 10px;
+      font-size: 12px;
+      height: max-content;
+    } 
+
+
+    aside h3 {
+      color: #ff4fa3;
+      font-size: 13px;
+      margin-bottom: 15px;
+    }
+
+    aside ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    aside li {
+      margin-bottom: 10px;
+      padding: 5px 10px;
+      border: 2px solid #1f7a3a;
+      background-color: #fff0f6;
+      font-size: 11px;
+      position: relative;
+    }
+
+    aside li:hover {
+      background-color: #ff8fcf;
+      color: #fff0f6;
+      cursor: pointer;
+    }
+
+.about-left {
+  margin-top: 20px;
+  padding: 10px;
+  border: 2px solid #ff4fa3;
+  background-color: #fff0f6;
+  font-size: 12px;
+}
+
+.about-left h3 {
+  color: #ff4fa3;
+margin: 5px 0;
+}
+
+main {
+  flex: 1;
+}
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, 120px);
+      grid-auto-rows: 120px;
+      gap: 15px;
+    }
+
+    .box {
+      position: relative;
+      width: 120px;
+      height: 120px;
+      border: 2px solid #1f7a3a;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .box img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+    }
+
+    .box span {
+      position: absolute;
+      top: 50%; 
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      font-weight: bold;
+      z-index: 1;
+      text-shadow: 1px 1px 5px rgba(0,0,0,0.7);
+      font-size: 13px;
+    }
+
+    .images {
+      border-left: 3px solid #1f7a3a;
+      padding-left: 10px;
+      font-size: 11px;
+      width: 100%;
+      height: 100%;
+    }
+
+      .img-box {
+      width: 100%;
+      height: 400px;
+    }
+
+    .bottom {
+      display: flex;
+      justify-content: center;
+      gap: 80px; 
+      padding: 20px 0;
+      text-align: center;
+    }
+
+    .bottom div {
+      max-width: 300px;
+    }
+
+    .bottom h3 {
+      color: #ff4fa3;
+    }
+
+    .bottom p {
+      font-size: 12px;
+    }
+
+
+  .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 0;
+      left: 105%;
+      background-color: #fff0f6;
+      border: 2px solid #1f7a3a;
+      border-radius: 5px;
+      padding: 5px 10px;
+      font-size: 11px;
+      list-style: none;
+      min-width: 0px;
+      z-index: 10;
+  }
+
+   .dropdown-content li {
+      margin: 5px 0;
+      padding: 3px 6px;
+      border: none;
+   }
+
+    .dropdown-content li:hover {
+      background-color: #ff8fcf;
+      color: #fff0f6;
+    }
+
+    .dropdown.active .dropdown-content {
+      display: block; 
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>
+      <span class="cute-float">♡</span>
+      Anna's Minecraft Server
+      <span class="cute-float">♡</span>
+    </h1>
+
+        <nav class="tabs">
+      <a href="#" class="dropdown">
+        Overview
+        <div class="dropdown-menu">
+          <p>The 1.20 Trails & Tales update introduced the Cherry Grove biome to Minecraft, which happens to be the entire reason I created this realm. I wanted a fresh start with pink wood, yay!!!! The one color the community had begged for since 2020 (the Nether wood update)! Because of this, we made an entire pink and white mansion (also thanks to the Pale Forest update), and were inspired to create an entire pink, cottage-core, bright and saturated world. Filled with flowers fields, colored concrete, cherry blossom trees, whimsical and fun builds, accompanied by very long trips to the Nether for glowstone, froglights, and shroomlights.</p>
+        </div>
+      </a>
+      <a href="#" class="dropdown">
+      Builds
+      <div class="dropdown-menu">
+        <p>As of now we have…</p>
+        <ul>
+          <li>The pink-bow mansion base</li>
+          <li>Moon heart-home</li>
+          <li>Strawberries on a branch</li>
+          <li>Farming quad</li>
+          <li>Teddy bear</li>
+          <li>Glass cherries</li>
+          <li>Tulip waterfall</li>
+          <li>Japanese cherry tree</li>
+          <li>Strawberry shortcake house</li>
+          <li>Lemon branch</li>
+          <li>Heart pond</li>
+          <li>House Targaryen sigil</li>
+          <li>Horse stable</li>
+          <li>Fishing pier</li>
+          <li>Pink picnic</li>
+          <li>Flower field</li>
+          <li>Ghast home</li>
+          <li>Animal barn</li>
+          <li>Cat-fe</li>
+          <li>Pink lighthouse</li>
+          <li>Polly-pocket house</li>
+          <li>Cat sanctuary</li>
+        </ul>
+      </div>
+    </a>
+      <a href="#" class="dropdown">
+      Achievements
+      <div class="dropdown-menu">
+        <ul>
+          <li>Acquire Hardware ✅</li>
+          <li>Adventuring Time ❌</li>
+          <li>Alternative Fuel ✅</li>
+          <li>Artificial Selection ✅</li>
+          <li>Atlantis? ✅</li>
+          <li>Bake Bread ✅</li>
+          <li>Beam Me Up ✅</li>
+          <li>Benchmaking ✅</li>
+          <li>Body Guard ✅</li>
+          <li>Castaway ❌</li>
+          <li>Camouflage ❌</li>
+          <li>Cheating Death ✅</li>
+          <li>Chestful of Cobblestone ✅</li>
+          <li>Cow Tipper ✅</li>
+          <li>Delicious Fish ✅</li>
+          <li>DIAMONDS! ✅</li>
+          <li>Diamonds to You! ✅</li>
+          <li>Dispense With This ❌</li>
+          <li>Do a Barrel Roll! ❌</li>
+          <li>Dry Spell ✅</li>
+          <li>Echolocation ✅</li>
+          <li>Enchanter ✅</li>
+          <li>Feeling Ill ✅</li>
+          <li>Free Diver ✅</li>
+          <li>Freight Station ✅</li>
+          <li>Fruit on the Loom ❌</li>
+          <li>Getting Wood ✅</li>
+          <li>Getting an Upgrade ✅</li>
+          <li>Great View From Up Here ❌</li>
+          <li>Have a Shearful Day ✅</li>
+          <li>Hot Topic ✅</li>
+          <li>I'm a Marine Biologist ✅</li>
+          <li>Inception ❌</li>
+          <li>Into Fire ✅</li>
+          <li>Into the Nether ✅</li>
+          <li>Iron Belly ✅</li>
+          <li>Iron Man ✅</li>
+          <li>It's a Sign! ✅</li>
+          <li>Leader of the Pack ❌</li>
+          <li>Let it Go! ❌</li>
+          <li>Librarian ✅</li>
+          <li>Lion Tamer ✅</li>
+          <li>Local Brewery ✅</li>
+          <li>Map Room ❌</li>
+          <li>Me Gold! ✅</li>
+          <li>MOAR Tools ✅</li>
+          <li>Monster Hunter ✅</li>
+          <li>Moskstraumen ❌</li>
+          <li>On a Rail ✅</li>
+          <li>One Pickle, Two Pickle, Sea Pickle, Four ❌</li>
+          <li>Organizational Wizard ❌</li>
+          <li>Overkill ✅</li>
+          <li>Overpowered ❌</li>
+          <li>Passing the Time ✅</li>
+          <li>Pork Chop ✅</li>
+          <li>Pot Planter ✅</li>
+          <li>Rabbit Season ✅</li>
+          <li>Rainbow Collection ❌</li>
+          <li>Renewable Energy ✅</li>
+          <li>Repopulation ✅</li>
+          <li>Return to Sender ❌</li>
+          <li>Saddle up ✅</li>
+          <li>Sail the 7 Seas ❌</li>
+          <li>Sleep with the Fishes ❌</li>
+          <li>Smelt Everything ✅</li>
+          <li>Sniper Duel ❌</li>
+          <li>So I Got That Going for Me ❌</li>
+          <li>Stayin' Frosty ✅</li>
+          <li>Super Fuel ✅</li>
+          <li>Super Sonic ❌</li>
+          <li>Taking Inventory ✅</li>
+          <li>Taste of Your Own Medicine ❌</li>
+          <li>The Beaconator ❌</li>
+          <li>The Beginning? ❌</li>
+          <li>The Beginning ❌</li>
+          <li>The Deep End ❌</li>
+          <li>The End? ✅</li>
+          <li>The End. ✅</li>
+          <li>The End... Again... ❌</li>
+          <li>The Lie ✅</li>
+          <li>Tie Dye Outfit ✅</li>
+          <li>Time to Farm ✅</li>
+          <li>Time to Mine ✅</li>
+          <li>Time to Strike ✅</li>
+          <li>Top of the World ❌</li>
+          <li>Trampoline ✅</li>
+          <li>Treasure Hunter ❌</li>
+        </ul>
+      </div>
+    </a>
+
+    <a href="#" class="dropdown">
+      Collections
+    </a>
+  </nav>
+</header>
+
+  <section class="layout">
+   <aside>
+  <h3>Progress + Status</h3>
+  <ul>
+    <li class="dropdown" onclick="this.classList.toggle('active')">
+      Milestones
+      <ul class="dropdown-content">
+        <li>Started the Realm - December 27, 2025</li>
+        <li>The World's Seed: 1816648670920646980</li>
+      </ul>
+    </li>
+
+    <li class="dropdown" onclick="this.classList.toggle('active')">
+      Combat Stats
+      <ul class="dropdown-content">
+        <li>Time played: 13d 18h 6m</li>
+        <li>Monsters Killed: 1844</li>
+        <li>Distance Travelled: 1,514,522</li>
+      </ul>
+    </li>
+
+    <li class="dropdown" onclick="this.classList.toggle('active')">
+      Mining
+      <ul class="dropdown-content">
+        <li>Blocks Broken: 168,756</li>
+      </ul>
+    </li>
+  </ul>
+</aside>
+    </aside>
+
+    <main class="grid">
+      <div class="box">
+        Brewing
+          <img src="images/strawberries.jpg" alt="Brewing"/>
+        </div> 
+      <div class="box">
+        Trading
+      <img src="images/bear.PNG" alt="Trading"/>
+      </div>
+
+      <div class="box">
+        Enchanting
+      <img src="images/frogPond.PNG" alt="Enchanting"/>
+      </div>
+      <div class="box">
+        Mobs
+      <img src="images/flowerField.PNG" alt="Mobs"/>
+      </div>
+      <div class="box">
+        Smelting
+      <img src="images/lemon.PNG" alt="Smelting"/>
+      </div>
+      <div class="box">
+        Farming
+        <img src="images/cherries.PNG" alt="Farming"/>  
+      </div>
+      <div class="box">
+        Crafting
+      <img src="images/targaryen.PNG" alt="Crafting"/>
+      </div>
+      <div class="box">
+        Effects
+      <img src="images/strawberryShortcake.PNG" alt="Effects"/>
+      </div>
+ <div class="box">
+        Redstone
+      <img src="images/largeTree.jpg" alt="Redstone"/>
+ </div>
+<div class="box">
+        Nether
+      <img src="images/moon.PNG" alt="Nether"/>
+</div>
+<div class="box">
+        End
+      <img src="images/picnic.jpg" alt="End"/>  
+</div>
+<div class="box">
+        Misc
+      <img src="images/ghastHome.PNG" alt="Misc"/>  
+</div>
+    </main>
+
+     <div class="images">
+    <div class="img-box">
+      <iframe 
+        src="https://player.vimeo.com/video/1166217313?autoplay=1&loop=1&muted=1&background=1" 
+        width="100%" 
+        height="100%" 
+        frameborder="0" 
+        allow="autoplay; fullscreen; picture-in-picture" 
+        allowfullscreen>
+      </iframe>
+    </div>
+
+
+  </section>
+  <section class="bottom">
+    <div>
+      <h3>About Me</h3>
+      <p>
+        My name is Anna, I am 25, and I have been playing Minecraft since 2012!
+        This webpage acts as a Hall of Fame of my Minecraft Realm.
+        It was started in December of 2025, and I enjoy discovering all the game has to offer!
+      </p>
+    </div>
+
+    <div>
+      <h3>Current Objective</h3>
+      <p>
+        My friend and I are currently collecting diamond to create a beacon for our next builds!
+      </p>
+    </div>
+  </section>
+
+</body>
+</html>
